@@ -1,0 +1,37 @@
+{
+    "name": "nerdcel/kirby3-favicon",
+    "description": "Kirby3 plugin to create favicons from the panel.",
+    "license": "MIT",
+    "type": "kirby-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "kirby3",
+        "kirby-cms",
+        "kirby-plugin",
+        "getkirby",
+        "kirby"
+    ],
+    "homepage": "https://github.com/nerdcel/kirby3-favicon",
+    "authors": [
+        {
+            "name": "Marcel Hieke",
+            "email": "office@marcelhieke.com"
+        }
+    ],
+    "require": {
+        "php": ">= 8.0 < 8.2",
+        "getkirby/composer-installer": "^1.2.1"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "getkirby/composer-installer": true
+        }
+    },
+    "extra": {
+        "installer-name": "kirby3-favicon"
+    }
+}
