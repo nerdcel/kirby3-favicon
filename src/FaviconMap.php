@@ -4,13 +4,12 @@ use Kirby\Http\Response;
 
 class FaviconMap
 {
-    public $validlegacy = false;
-    public $validmodern = false;
+    public bool $validlegacy = false;
+    public bool $validmodern = false;
 
-    private $site;
-    private $icoDestinationfile;
+    private string $icoDestinationfile;
     private $icoSVG;
-    private $modernVersions = [];
+    private array $modernVersions = [];
 
     protected static $instance;
 
@@ -21,14 +20,12 @@ class FaviconMap
 
     public function __construct(Kirby\Cms\Site $site)
     {
-        $this->site = $site;
-
         if ($site->faviconsvg()->isNotEmpty()) {
             $this->icoSVG = $site->faviconsvg()->toImage()->realpath();
             $this->validmodern = true;
         }
 
-        if ($site->faviconimage()->isNotEmpty()) {
+        if ($site->faviconimage()->isNotEmpty() && $site->faviconimage()->toFile()) {
             $sourcepath = $site->faviconimage()->toFile()->realpath();
             $pathinfo = pathinfo($sourcepath);
             $destinationpath = $pathinfo['dirname'];
@@ -36,11 +33,9 @@ class FaviconMap
 
             $this->icoDestinationfile = $destinationpath . '/' . $destinationfilename;
 
-            if ($site->faviconimage()) {
-                if (!file_exists($this->icoDestinationfile)) {
-                    $ico_lib = new PHP_ICO($sourcepath, [[16, 16], [32, 32], [64, 64]]);
-                    $ico_lib->save_ico($this->icoDestinationfile);
-                }
+            if (!file_exists($this->icoDestinationfile)) {
+                $ico_lib = new PHP_ICO($sourcepath, [[16, 16], [32, 32], [64, 64]]);
+                $ico_lib->save_ico($this->icoDestinationfile);
             }
 
             $this->modernVersions['icon-16'] = $site->faviconimage()->toFile()->crop(16, 16, [
