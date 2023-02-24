@@ -21,7 +21,7 @@ class FaviconMap
     public function __construct(Kirby\Cms\Site $site)
     {
         if ($site->faviconsvg()->isNotEmpty()) {
-            $this->icoSVG = $site->faviconsvg()->toImage()->realpath();
+            $this->icoSVG = $site->faviconsvg()->toFile()->realpath();
             $this->validmodern = true;
         }
 
