@@ -41,16 +41,24 @@ class FaviconMap
             $this->modernVersions['icon-16'] = $site->faviconimage()->toFile()->crop(16, 16, [
                 'format' => 'png'
             ])->realpath();
+
             $this->modernVersions['icon-32'] = $site->faviconimage()->toFile()->crop(32, 32, [
                 'format' => 'png'
             ])->realpath();
+
             $this->modernVersions['apple-180'] = $site->faviconimage()->toFile()->crop(180, 180, [
                 'format' => 'png'
             ])->realpath();
+
             $this->modernVersions['icon-192'] = $site->faviconimage()->toFile()->crop(192, 192, [
                 'format' => 'png'
             ])->realpath();
+
             $this->modernVersions['icon-512'] = $site->faviconimage()->toFile()->crop(512, 512, [
+                'format' => 'png'
+            ])->realpath();
+
+            $this->modernVersions['icon-1080'] = $site->faviconimage()->toFile()->crop(1080, 1080, [
                 'format' => 'png'
             ])->realpath();
 
@@ -63,7 +71,8 @@ class FaviconMap
         return [
             'icons' => [
                 ['src' => '/icon-192.png', 'type' => 'image/png', 'sizes' => '192x192'],
-                ['src' => '/icon-512.png', 'type' => 'image/png', 'sizes' => '512x512']
+                ['src' => '/icon-512.png', 'type' => 'image/png', 'sizes' => '512x512'],
+                ['src' => '/icon-1080.png', 'type' => 'image/png', 'sizes' => '1080x1080'],
             ],
         ];
     }
@@ -122,6 +131,14 @@ class FaviconMap
     {
         if (isset($this->modernVersions['icon-512'])) {
             return Response::file($this->modernVersions['icon-512']);
+        }
+        return null;
+    }
+    
+    public function icon1080()
+    {
+        if (isset($this->modernVersions['icon-1080'])) {
+            return Response::file($this->modernVersions['icon-1080']);
         }
         return null;
     }

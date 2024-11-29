@@ -40,6 +40,12 @@ return [
         }
     ],
     [
+        'pattern' => '/icon-1080.png',
+        'action' => function () {
+            return site()->faviconmap()->icon1080();
+        }
+    ],
+    [
         'pattern' => '/icon-16x16.png',
         'action' => function () {
             return site()->faviconmap()->icon16();
